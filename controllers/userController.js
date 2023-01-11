@@ -138,6 +138,27 @@ static async subscription(req, res, next) {
   }
 }
 // ********** Subscription Closed ******** //
+
+  // ******** Feature for Member Open ****** //
+  static async planetsInfo(req, res) {
+    try {
+      let { data } = await axios({
+        method: "GET",
+        url: "https://api.api-ninjas.com/v1/planets?name=" + req.query.name,
+        // url: 'https://api.api-ninjas.com/v1/planets?offset=' + req.query.offset,
+        // params: {name: req.params},
+        headers: {
+          "X-RapidAPI-Key": "R2JObviZlxCL9aJ0D+PThw==i4mLX3b7C5O84bWV",
+          "X-RapidAPI-Host": "planets-by-api-ninjas.p.rapidapi.com",
+          "X-Api-Key": "R2JObviZlxCL9aJ0D+PThw==i4mLX3b7C5O84bWV",
+        },
+      });
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+  }
+  // ******** Feature for Member Closed ****** //
 }
 
 module.exports = UserController;
